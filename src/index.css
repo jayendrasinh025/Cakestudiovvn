@@ -1,0 +1,330 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "DM Serif Display", "Playfair Display", Georgia, serif;
+  --font-editorial: "DM Serif Display", "Playfair Display", Georgia, serif;
+  --font-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --color-blush: #F7E5E8;
+  --color-warm-white: #FFFDFC;
+  --color-berry: #713B50;
+  --color-dusty-rose: #D9A6B2;
+  --color-chocolate: #302326;
+  --color-champagne: #E9D7B9;
+  --color-sky-top: #3195e0;
+  --color-sky-mid: #49a9f3;
+  --color-highlighter: #f6f03b;
+  --color-ink: #161c08;
+}
+
+:root {
+  --u: max(calc(100vw / 1440), calc(100vh / 900));
+  --n: clamp(0.62px, min(calc(100vw / 1440), calc(100vh / 900)), 1.6px);
+  --swipe-clip-1: 0%;
+  --swipe-clip-2: 0%;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #FFFDFC;
+    color: #161c08;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, .font-editorial {
+    font-family: var(--font-serif);
+  }
+}
+
+/* =========================================================
+   SKYPROMPT FLOATING ISLAND HERO SYSTEM (1440 x 900 FRAME)
+   ========================================================= */
+
+.sky-hero-viewport {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: calc(900 * var(--u));
+  overflow: hidden;
+  background: linear-gradient(180deg, #3195e0 0%, #49a9f3 65%, #cbe7fc 100%);
+  user-select: none;
+}
+
+.sky-scene-frame {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(1440 * var(--u));
+  height: calc(900 * var(--u));
+  overflow: hidden;
+}
+
+.sky-plate-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Video rendered 16:9 from plate mirror-extended 96/1728 on each side:
+   111.11% width, left -5.556% so middle sits directly on plate */
+.sky-plate-video {
+  position: absolute;
+  top: 0;
+  left: -5.556%;
+  width: 111.111%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Pinned Top Navigation (--n fit unit) */
+.sky-pinned-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(88 * var(--n));
+  z-index: 30;
+  pointer-events: none;
+}
+
+.sky-pinned-nav > * {
+  pointer-events: auto;
+}
+
+.sky-nav-logo {
+  position: absolute;
+  left: calc(118 * var(--n));
+  top: calc(22 * var(--n));
+  width: calc(44 * var(--n));
+  height: calc(44 * var(--n));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sky-nav-logo:hover {
+  transform: rotate(25deg) scale(1.06);
+}
+
+.sky-nav-links {
+  position: absolute;
+  left: 50%;
+  top: calc(44 * var(--n));
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: calc(35.5 * var(--n));
+}
+
+.sky-nav-link {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: calc(17 * var(--n));
+  color: #ffffff;
+  white-space: nowrap;
+  text-decoration: none;
+  text-shadow: 0 1px 8px rgba(17, 73, 122, 0.22);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sky-nav-link:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.sky-nav-circle-btn {
+  position: absolute;
+  right: calc(283 * var(--n));
+  top: calc(44 * var(--n));
+  transform: translateY(-50%);
+  width: calc(50 * var(--n));
+  height: calc(50 * var(--n));
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.sky-nav-circle-btn:hover {
+  background: rgba(255, 255, 255, 0.34);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.sky-nav-pill {
+  position: absolute;
+  right: calc(107 * var(--n));
+  top: calc(44 * var(--n));
+  transform: translateY(-50%);
+  width: calc(168 * var(--n));
+  height: calc(44 * var(--n));
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #161c08;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: calc(15 * var(--n));
+  letter-spacing: -0.015em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  box-shadow: 0 calc(6 * var(--n)) calc(20 * var(--n)) rgba(16, 65, 112, 0.18);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.sky-nav-pill:hover {
+  transform: translateY(calc(-50% - 2px)) scale(1.02);
+  box-shadow: 0 calc(10 * var(--n)) calc(24 * var(--n)) rgba(16, 65, 112, 0.26);
+}
+
+/* Rough Yellow Highlighter Swipe System */
+.highlighter-swipe {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #161c08;
+  line-height: 1;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.highlighter-swipe::before {
+  content: "";
+  position: absolute;
+  inset: -6% -8%;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 72' preserveAspectRatio='none'%3E%3Cpath fill='%23f6f03b' d='M11.5,11.2 C4.2,13.5 1.8,19.4 4.9,24.8 C2.1,29.1 0.8,35.6 5.4,40.2 C2.2,46.5 4.8,53.9 10.6,57.4 C8.4,61.8 13.9,66.3 21.8,65.7 C68.4,68.9 135.2,67.2 198.6,65.9 C219.4,65.4 236.8,66.8 247.9,63.2 C254.6,60.9 258.1,54.8 254.2,49.4 C258.8,44.2 259.4,36.5 253.8,31.9 C257.9,26.1 256.2,18.7 249.8,14.8 C252.4,10.2 246.5,6.4 238.2,6.8 C184.5,4.1 104.8,5.2 38.4,7.9 C26.2,8.4 16.8,9.5 11.5,11.2 Z'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 calc(1.5 * var(--u)) rgba(246, 240, 59, 0.75));
+  clip-path: inset(0 var(--swipe-right-clip, 0%) 0 0);
+}
+
+/* DM Serif Display Headline with 1.1u white text-stroke */
+.sky-headline-serif {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-weight: 400;
+  color: #ffffff;
+  -webkit-text-stroke: calc(1.1 * var(--u)) #ffffff;
+  paint-order: stroke fill;
+  line-height: 1;
+  letter-spacing: -0.012em;
+  text-shadow: 0 calc(4 * var(--u)) calc(22 * var(--u)) rgba(25, 92, 152, 0.22);
+}
+
+/* Four Fanned Cards on the Island */
+.sky-fan-card {
+  position: absolute;
+  width: calc(132 * var(--u));
+  height: calc(162 * var(--u));
+  border: calc(5 * var(--u)) solid #ffffff;
+  border-radius: calc(12 * var(--u));
+  box-shadow: 0 calc(12 * var(--u)) calc(26 * var(--u)) rgba(16, 48, 82, 0.28);
+  overflow: hidden;
+  background: #ffffff;
+  transform: rotate(var(--card-rot, 0deg));
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1), z-index 0s;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.sky-fan-card:hover,
+.sky-fan-card:focus-visible {
+  transform: translateY(calc(-18 * var(--u))) rotate(0deg) scale(1.07);
+  box-shadow: 0 calc(24 * var(--u)) calc(42 * var(--u)) rgba(16, 48, 82, 0.38);
+  z-index: 25 !important;
+}
+
+.sky-fan-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Scroll Reveal Animations for Content Sections */
+.reveal-item {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* =========================================================
+   MOBILE / PHONE LAYOUT (<= 820px)
+   Top: compact nav + copy in flow, centred.
+   Below: 1440x900 frame scaled to 100vw/720 cropped around
+   the island, top edge fading into sky gradient.
+   ========================================================= */
+@media (max-width: 820px) {
+  .sky-hero-viewport {
+    height: auto;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #3195e0 0%, #44a3ee 48%, #49a9f3 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sky-scene-frame {
+    --u: calc(100vw / 720);
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: calc(1440 * var(--u));
+    height: calc(560 * var(--u));
+    margin-top: calc(-18 * var(--u));
+    overflow: hidden;
+    flex-shrink: 0;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+  }
+
+  .sky-scene-inner-shift {
+    position: absolute;
+    top: calc(-340 * var(--u));
+    left: 0;
+    width: calc(1440 * var(--u));
+    height: calc(900 * var(--u));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .sky-plate-video {
+    display: none !important;
+  }
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

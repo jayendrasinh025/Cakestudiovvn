@@ -1,0 +1,6 @@
+{
+  "name": "Cake Studio — Luxury Custom Cake Boutique",
+  "description": "Every Celebration Deserves a Masterpiece. Handcrafted custom cakes for birthdays, anniversaries, and unforgettable celebrations in Anand, Gujarat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
